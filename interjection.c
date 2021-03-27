@@ -17,9 +17,7 @@ void cleanExit(int err) {
 }
 
 int main(int argc, char *argv[]) {
-    
     signal(SIGINT, cleanExit);
-    
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--version")) {
             if (argc > 2) {fprintf(stderr, "Incorrent number of options passed.\n"); cleanExit(E2BIG);}
@@ -55,12 +53,9 @@ int main(int argc, char *argv[]) {
             cleanExit(EINVAL);
         }
     }
-    
     if (GNU == NULL) {GNU = malloc(4); strcpy(GNU, "GNU");}
     if (Linux == NULL) {Linux = malloc(6); strcpy(Linux, "Linux");}
-    
     printf(
-        
         "I'd just like to interject for a moment.\n"
         "What you’re referring to as %s, is in fact, %s/%s, or as I’ve recently taken to calling it, %s plus %s.\n"
         "%s is not an operating system unto itself, but rather another free component of a fully functioning %s system made useful by the %s corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.\n"
@@ -71,7 +66,6 @@ int main(int argc, char *argv[]) {
         "The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system.\n"
         "%s is normally used in combination with the %s operating system: the whole system is basically %s with %s added, or %s/%s.\n"
         "All the so-called “%s” distributions are really distributions of %s/%s.\n",
-        
         Linux, GNU, Linux, GNU, Linux,
         Linux, GNU, GNU,
         GNU,
@@ -80,43 +74,7 @@ int main(int argc, char *argv[]) {
         Linux,
         Linux, GNU, GNU, Linux, GNU, Linux,
         Linux, GNU, Linux
-        
     );
-    
     cleanExit(0);
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
