@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
-#include <errno.h>
 
-char VER[] = "1.0";
+char VER[] = "1.1";
 
 char* GNU = NULL;
 char* Linux = NULL;
@@ -20,13 +19,13 @@ int main(int argc, char *argv[]) {
     signal(SIGINT, cleanExit);
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--version")) {
-            if (argc > 2) {fprintf(stderr, "Incorrent number of options passed.\n"); cleanExit(E2BIG);}
+            if (argc > 2) {fprintf(stderr, "Incorrent number of options passed.\n"); cleanExit(1);}
             printf("Stallman Interjection Text Generator %s\n", VER);
             printf("Copyright (C) 2021 PQCraft\n");            
             cleanExit(0);
         } else
         if (!strcmp(argv[i], "--help")) {
-            if (argc > 2) {fprintf(stderr, "Incorrent number of options passed.\n"); cleanExit(E2BIG);}
+            if (argc > 2) {fprintf(stderr, "Incorrent number of options passed.\n"); cleanExit(1);}
             printf("Usage: interject [options]\n");
             printf("Options:\n");
             printf("  --help              Shows the help screen.\n");
@@ -36,21 +35,21 @@ int main(int argc, char *argv[]) {
             cleanExit(0);
         } else
         if (!strcmp(argv[i], "--gnu")) {
-            if (GNU != NULL) {fprintf(stderr, "Cannot define 'GNU' more than once.\n"); cleanExit(E2BIG);}
+            if (GNU != NULL) {fprintf(stderr, "Cannot define 'GNU' more than once.\n"); cleanExit(1);}
             i++;
-            if (i > argc - 1) {fprintf(stderr, "No value specified for 'GNU'.\n"); cleanExit(EINVAL);}
+            if (i > argc - 1) {fprintf(stderr, "No value specified for 'GNU'.\n"); cleanExit(1);}
             GNU = (char *)malloc(strlen(argv[i]) + 1);
             strcpy(GNU, argv[i]);
         } else
         if (!strcmp(argv[i], "--linux")) {
-            if (Linux != NULL) {fprintf(stderr, "Cannot define 'Linux' more than once.\n"); cleanExit(E2BIG);}
+            if (Linux != NULL) {fprintf(stderr, "Cannot define 'Linux' more than once.\n"); cleanExit(1);}
             i++;
-            if (i > argc - 1) {fprintf(stderr, "No value specified for 'Linux'.\n"); cleanExit(EINVAL);}
+            if (i > argc - 1) {fprintf(stderr, "No value specified for 'Linux'.\n"); cleanExit(1);}
             Linux = (char *)malloc(strlen(argv[i]) + 1);
             strcpy(Linux, argv[i]);
         } else {
             fprintf(stderr, "Invalid option: %s\n", argv[i]);
-            cleanExit(EINVAL);
+            cleanExit(1);
         }
     }
     if (GNU == NULL) {GNU = malloc(4); strcpy(GNU, "GNU");}
@@ -76,5 +75,4 @@ int main(int argc, char *argv[]) {
         Linux, GNU, Linux
     );
     cleanExit(0);
-    
 }
