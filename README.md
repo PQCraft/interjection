@@ -14,6 +14,11 @@ Windows:<br>
 echo Stallman does not approve.
 ```
 
+macOS: <br>
+```sh
+echo Stallman does not approve.
+```
+
 ---
 
 ## Running:<br>
@@ -25,6 +30,11 @@ GNU/Linux:<br>
 
 Windows:<br>
 ```bat
+echo Stallman does not approve.
+```
+
+macOS: <br>
+```sh
 echo Stallman does not approve.
 ```
 
